@@ -1,6 +1,6 @@
-import "./styles.css";
+// import "./styles.css";
 
-const intialiseProjects = (() => {
+const initialiseProjects = (() => {
     const projects = [];
 
     const CreateNewProject = function() {
@@ -14,7 +14,7 @@ const intialiseProjects = (() => {
         return {projectName, projectDefault};
     };
 
-    const addProjectToArray = function(projectName, projectDefault, toDos) {
+    const addProjectToArray = function(projectName, projectDefault, toDos = []) {
         if (projectDefault === true) { // i want default project taking first position in the array
             projects.unshift({projectName, projectDefault, toDos});
         } else {
@@ -28,7 +28,7 @@ const intialiseProjects = (() => {
         return requestedProject;
     };
 
-    const updateProject = function(updateMethod, project, newName = null, newToDo = null, removeID) {
+    const updateProject = function(updateMethod, project, newName = null, newToDo = null, removeID = null) {
         switch (updateMethod) {
             case "changeName":
                 if (newName === null) {return};
@@ -83,3 +83,28 @@ class CreateToDo {
         this.complete = true;
     };
 };
+
+function createDefaultProject() {
+    initialiseProjects.addProjectToArray("Default", true);
+};
+
+function checkProject(userProject,todo) {
+    let project = initialiseProjects.getSingleProject(userProject);
+    if (project) {
+        initialiseProjects.updateProject("addTodo", project, todo);
+    } else {
+        let newProject = initialiseProjects.CreateNewProject();
+        initialiseProjects.addProjectToArray(newProject.projectName, newProject.projectDefault);
+        initialiseProjects.updateProject("addTodo", newProject, todo);
+    };
+};
+
+function toDoController() {
+    let toDo1 = new CreateToDo("read book", "i need to read", "02/03/2026", "high", "no notes", ["turn page", "move page", "lift page"]);
+    createDefaultProject();
+    let userProject = prompt("Where should the toDo go? ");
+    checkProject(userProject, toDo1);
+    console.log(initialiseProjects.getAllProjects());
+};
+
+toDoController();
