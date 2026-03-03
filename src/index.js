@@ -3,8 +3,11 @@
 const initialiseProjects = (() => {
     const projects = [];
 
-    const CreateNewProject = function() {
-        let projectName = prompt("What should we call this project?");
+    const CreateNewProject = function(desiredName = null) {
+        let projectName = desiredName;
+        if (desiredName === null) {
+            projectName = prompt("What should we call this project?");
+        };
         let projectDefault = prompt("Should this be the default project?");
         if (projectDefault == "Y") {
             projectDefault = true;
@@ -15,11 +18,14 @@ const initialiseProjects = (() => {
     };
 
     const addProjectToArray = function(projectName, projectDefault, toDos = []) {
+        const newProject = {projectName,projectDefault,toDos};
         if (projectDefault === true) { // i want default project taking first position in the array
-            projects.unshift({projectName, projectDefault, toDos});
+            projects.forEach(project => project.projectDefault = false);
+            projects.unshift(newProject);
         } else {
-            projects.push({projectName, projectDefault, toDos});
+            projects.push(newProject);
         };
+        return newProject;
     };
     const getAllProjects = () => projects;
 
@@ -56,7 +62,10 @@ const initialiseProjects = (() => {
 
     const deleteSingleProject = (targetProject) => {
         let targetProjectIndex = projects.indexOf(targetProject);
-        projects.splice(targetProjectIndex, 1);
+        if (targetProjectIndex !== -1) {
+            projects.splice(targetProjectIndex, 1);
+            projects[0].projectDefault = true;
+        };
         return projects;
     };
 
@@ -85,17 +94,17 @@ class CreateToDo {
 };
 
 function createDefaultProject() {
-    initialiseProjects.addProjectToArray("Default", true);
+    initialiseProjects.addProjectToArray("Initial", true);
 };
 
 function checkProject(userProject,todo) {
     let project = initialiseProjects.getSingleProject(userProject);
     if (project) {
-        initialiseProjects.updateProject("addTodo", project, todo);
+        initialiseProjects.updateProject("addTodo", project, null, todo);
     } else {
-        let newProject = initialiseProjects.CreateNewProject();
-        initialiseProjects.addProjectToArray(newProject.projectName, newProject.projectDefault);
-        initialiseProjects.updateProject("addTodo", newProject, todo);
+        let newProjectData = initialiseProjects.CreateNewProject(userProject);
+        project = initialiseProjects.addProjectToArray(newProjectData.projectName,newProjectData.projectDefault);
+        initialiseProjects.updateProject("addTodo", project, null, todo);
     };
 };
 
