@@ -6,5 +6,50 @@
     <title>Todo List</title>
 </head>
 <body>
+    <div class = "container">
+        <div class = "header">Todo List</div>
+        <div class = "main-content">
+            <button class = "add-toDos-button">+</button>
+            <div class = "toDo-grid"></div>
+        </div>
+        <div class = "sidebar">
+            <h1>Projects</h1>
+            <button class = "add-projects-button">+</button>
+            <div class = "projects-grid"></div>
+        </div>
+    </div>
+    <dialog class = "create-toDo">
+        <form action = "#" method = "post">
+            <label for = "title">Todo Title:</label>
+            <input type = "text" id = "title" name = "title" placeholder = "Go to the supermarket" required>
+            <label for = "description">Todo Description:</label>
+            <textarea rows = "15" cols = "25" id = "description" required></textarea>
+            <label for = "dueDate">Due Date:</label>
+            <input type = "date" id = "dueDate" name = "date" required>
+            <label for = "priority" name = "priority">Todo Priority:</label>
+            <select id = "priority" name = "priority" required>
+                <option value="" disabled selected>Select priority</option>
+                <option value = "high">High</option>
+                <option value = "medium">Medium</option>
+                <option value = "low">Low</option>
+            </select>
+            <label for = "notes">Todo Notes:</label>
+            <input type = "text" id = "notes" name = "notes" placeholder="..." required>
+            <div class = "checklist-items"></div>
+            <label for = "complete">Complete?</label>
+            <input type = "checkbox" id = "complete" name = "complete">
+            <button type = "submit" id = "submit-button">Submit all data and close form</button>
+        </form>
+    </dialog>
+
+    <dialog class = "create-project">
+        <form action = "#" method = "post">
+            <label for = "project-title">Project Title:</label>
+            <input type = "text" id = "project-title" name = "title" required>
+            <label for = "default-project">Default?</label>
+            <input type = "checkbox" id = "default-project" name = "default-project">
+            <button type = "submit" id = "submit-project-button">Submit all data and close form</button>
+        </form>
+    </dialog>
 </body>
 </html>

@@ -68,4 +68,6 @@ function deleteSingleProject(targetProject) {
 };
 
 let defaultProject = addProjectToArray("Initial", true);
+addProjectToArray("Test1", false);
+addProjectToArray("Test2", false);
 export {CreateNewProject, addProjectToArray, getAllProjects, getSingleProject, updateProject, deleteSingleProject};
