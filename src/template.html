@@ -35,12 +35,45 @@
             </select>
             <label for = "notes">Todo Notes:</label>
             <input type = "text" id = "notes" name = "notes" placeholder="..." required>
-            <div class = "checklist-items"></div>
+            <div class = "checklist-utilities">
+                <label for = "add-checklist-button">Add checklist item:</label>
+                <button type = "button" id = "add-checklist-button">+</button>
+            </div>
+            <div id = "checklist-items"></div>
             <label for = "complete">Complete?</label>
             <input type = "checkbox" id = "complete" name = "complete">
             <button type = "submit" id = "submit-button">Submit all data and close form</button>
         </form>
+        <button id = "close-toDo-form">Close Form (without adding a new Todo)</button>
     </dialog>
+
+    <dialog class = "update-toDo">
+    <form action = "#" method = "post">
+        <label for = "changed-title">Todo Title:</label>
+        <input type = "text" id = "changed-title" name = "title" placeholder = "Go to the supermarket" required>
+        <label for = "changed-description">Todo Description:</label>
+        <textarea rows = "15" cols = "25" id = "changed-description" required></textarea>
+        <label for = "changed-dueDate">Due Date:</label>
+        <input type = "date" id = "changed-dueDate" name = "date" required>
+        <label for = "changed-priority" name = "priority">Todo Priority:</label>
+        <select id = "changed-priority" name = "priority" required>
+            <option value="" disabled selected>Select priority</option>
+            <option value = "high">High</option>
+            <option value = "medium">Medium</option>
+            <option value = "low">Low</option>
+        </select>
+        <label for = "changed-notes">Todo Notes:</label>
+        <input type = "text" id = "changed-notes" name = "notes" placeholder="..." required>
+        <div class = "checklist-utilities">
+            <label for = "changed-add-checklist-button">Add checklist item:</label>
+            <button type = "button" id = "changed-add-checklist-button">+</button>
+        </div>
+        <div id = "changed-checklist-items"></div>
+        <label for = "changed-complete">Complete?</label>
+        <input type = "checkbox" id = "changed-complete" name = "complete">
+        <button type = "submit" id = "changed-submit-button">Submit all data and close form</button>
+    </form>
+</dialog>
 
     <dialog class = "create-project">
         <form action = "#" method = "post">
@@ -50,6 +83,7 @@
             <input type = "checkbox" id = "default-project" name = "default-project">
             <button type = "submit" id = "submit-project-button">Submit all data and close form</button>
         </form>
+        <button id = "close-project-form">Close Form (without adding a new project)</button>
     </dialog>
 </body>
 </html>

@@ -17,16 +17,6 @@ class CreateToDo {
     completeTask() {
         this.complete = true;
     };
-
-    changePriority() {
-        if (this.priority === "low") {
-            this.priority = "medium";
-        } else if (this.priority == "medium") {
-            this.priority = "high";
-        } else {
-            this.priority = "low";
-        };
-    };
 };
 
 export default CreateToDo;

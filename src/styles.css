@@ -17,7 +17,7 @@ h1 {
 }
 
 .header {
-    background-color: palegreen;
+    background-color: rgb(174, 248, 174);
     font-size: 5rem;
     display: flex;
     justify-content: center;
@@ -26,13 +26,13 @@ h1 {
 
 .main-content {
     padding: 15px;
-    background-color: paleturquoise;
+    background-color: rgb(182, 215, 248);
     grid-column: 2;
     grid-row: 2;
 }
 
 .sidebar {
-    background-color: palevioletred;
+    background-color: rgb(189, 172, 255);
     padding: 20px;
     gap: 20px;
     grid-column: 1;
@@ -52,20 +52,38 @@ h1 {
 
 .project {
     font-size: 1.4rem;
+    background-color: rgb(142, 114, 255);
+    padding: 10px 15px;
+    border-radius: 8px;
+    width: 90%;
+    text-align: center;
+    color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
 }
 
 .Todo {
-    border: 3px solid purple;
+    border: 5px solid purple;
     max-height: 15vh;
     border-radius: 10px;
-    background-color: rgb(182, 215, 248);
     padding: 16px;
     margin: 16px;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+.high-priority {
+    background-color: rgb(212, 91, 87);
+}
+
+.medium-priority {
+    background-color: rgb(212, 204, 87);
+}
+
+.low-priority {
+    background-color: rgb(147, 212, 87);
 }
 
 .Todo h2 {
@@ -80,18 +98,20 @@ h1 {
     display: flex;
     gap: 5px;
 }
-.expand-Todo, .delete-button {
+
+.expand-Todo,
+.delete-button {
     align-self: flex-start;
     padding: 6px 12px;
     border: none;
     border-radius: 6px;
-    background-color: purple;
+    background-color: rgb(128, 0, 128);
     color: white;
     font-weight: 700;
 }
 
 .delete-button {
-    background-color: rgb(212, 91, 87);
+    background-color: rgb(139, 0, 0);
 }
 
 .expand-Todo:hover {
@@ -99,14 +119,24 @@ h1 {
 }
 
 .add-projects-button,
-.add-toDos-button {
+.add-toDos-button,
+#add-checklist-button,
+#changed-add-checklist-button {
     width: 30px;
     height: 30px;
     font-size: 2rem;
     text-align: center;
     border: none;
     border-radius: 30%;
-    background-color: rgb(172, 152, 251);
+    color: white;
+    background-color: rgb(128, 0, 128);
+}
+
+#add-checklist-button,
+#changed-add-checklist-button {
+    width: 25px;
+    height: 25px;
+    font-size: 1rem;
 }
 
 .toDo-grid {
@@ -125,31 +155,57 @@ form {
     gap: 5px;
 }
 
-input:invalid, textarea:invalid, select:invalid{
+input:invalid,
+textarea:invalid,
+select:invalid {
     border-width: 3px;
     border-color: red;
 }
 
-input:valid, textarea:valid, select:valid {
+input:valid,
+textarea:valid,
+select:valid {
     border-width: 3px;
     border-color: green;
 }
 
 .create-toDo,
+.update-toDo,
 .create-project {
-  padding: 20px;
-  border: none;
-  border-radius: 10px;
-  margin: auto;
-  position: relative;
-  top: 5%;
-  left: 13%;
+    padding: 20px;
+    border: none;
+    border-radius: 10px;
+    margin: auto;
+    position: relative;
+    top: 5%;
+    left: 13%;
 }
 
 
 #submit-button,
-#submit-project-button {
-  background-color: rgb(182, 215, 248);
-  border: none;
-  border-radius: 5px;
+#submit-project-button,
+#changed-submit-button {
+    background-color: rgb(182, 215, 248);
+    border: none;
+    border-radius: 5px;
+}
+
+#close-project-form,
+#close-toDo-form {
+    background-color: palevioletred;
+    border: none;
+    border-radius: 5px;
+}
+
+#checklist-items,
+#changed-checklist-items {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#checklist-items > input,
+#changed-checklist-items > input {
+    position: relative;
+    left: 3%;
 }

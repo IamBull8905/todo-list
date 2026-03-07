@@ -1,21 +1,7 @@
 const projects = [];
 
-function CreateNewProject(desiredName = null) {
-    let projectName = desiredName;
-    if (desiredName === null) {
-        projectName = prompt("What should we call this project?");
-    };
-    let projectDefault = prompt("Should this be the default project?");
-    if (projectDefault == "Y") {
-        projectDefault = true;
-    } else {
-        projectDefault = false;
-    };
-    return {projectName, projectDefault};
-};
-
 function addProjectToArray(projectName, projectDefault, toDos = []) {
-    const newProject = {projectName,projectDefault,toDos};
+    const newProject = { projectName, projectDefault, toDos };
     if (projectDefault === true) { // i want default project taking first position in the array
         projects.forEach(project => project.projectDefault = false);
         projects.unshift(newProject);
@@ -35,14 +21,14 @@ function getSingleProject(requestedName) {
 function updateProject(updateMethod, project, newName = null, newToDo = null, removeID = null) {
     switch (updateMethod) {
         case "changeName":
-            if (newName === null) {return};
+            if (newName === null) { return };
             project.projectName = newName;
             break;
         case "changeDefault":
             let projectIndex = projects.indexOf(project);
             projects[0].projectDefault = false;
             project.projectDefault = true;
-            projects.splice(projectIndex,1);
+            projects.splice(projectIndex, 1);
             projects.unshift(project);
             break;
         case "addTodo":
@@ -68,6 +54,4 @@ function deleteSingleProject(targetProject) {
 };
 
 let defaultProject = addProjectToArray("Initial", true);
-addProjectToArray("Test1", false);
-addProjectToArray("Test2", false);
-export {CreateNewProject, addProjectToArray, getAllProjects, getSingleProject, updateProject, deleteSingleProject};
+export { addProjectToArray, getAllProjects, getSingleProject, updateProject, deleteSingleProject };
