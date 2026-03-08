@@ -1,4 +1,5 @@
 import { format, parse } from 'date-fns'
+import { getAllProjects } from './projectManager.js';
 
 function formatDate(date) {
     const parsedDate = parse(date, `yyyy-MM-dd`, new Date());
@@ -6,4 +7,13 @@ function formatDate(date) {
     return result;
 };
 
-export { formatDate };
+function saveData() {
+    localStorage.setItem("Projects",JSON.stringify(getAllProjects()));
+};
+
+function onPageLoad() {
+    const projects = JSON.parse(localStorage.getItem("Projects"));
+    return projects;
+}
+
+export { formatDate, saveData, onPageLoad };

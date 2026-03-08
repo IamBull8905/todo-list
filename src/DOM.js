@@ -1,6 +1,6 @@
 import { addProjectToArray, getAllProjects, updateProject } from "./projectManager.js";
 import CreateToDo from "./createTodo.js";
-import { formatDate } from "./utilities.js";
+import { formatDate, saveData } from "./utilities.js";
 let currentProject = null;
 let toDoID = null;
 const addButton = document.querySelector(".add-toDos-button");
@@ -151,6 +151,7 @@ submitButton.addEventListener("click", event => {
         addTodosToDOM(currentProject);
     };
     toDoDialog.close();
+    saveData();
 });
 
 changedSubmitButton.addEventListener("click", event => {
@@ -188,10 +189,11 @@ changedSubmitButton.addEventListener("click", event => {
         changedChecklistItemsContainer.textContent = "";
     };
     updateToDoDialog.close();
+    saveData();
 });
 
-function createProjects() {
-    const allProjects = getAllProjects();
+function createProjects(projects) {
+    const allProjects = projects || getAllProjects();
     const projectGrid = document.querySelector(".projects-grid");
     projectGrid.textContent = "";
     for (const project of allProjects) {
@@ -222,6 +224,7 @@ submitProjects.addEventListener("click", event => {
         createProjects();
     };
     projectDialog.close();
+    saveData();
 });
 
 export default createProjects;
