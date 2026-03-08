@@ -53,5 +53,9 @@ function deleteSingleProject(targetProject) {
     return projects;
 };
 
-let defaultProject = addProjectToArray("Initial", true);
-export { addProjectToArray, getAllProjects, getSingleProject, updateProject, deleteSingleProject };
+function removeAllProjects() {
+    projects.length = 0;
+    return projects;
+}
+
+export { addProjectToArray, getAllProjects, getSingleProject, updateProject, deleteSingleProject, removeAllProjects };

@@ -1,6 +1,27 @@
-import { addProjectToArray, getAllProjects, updateProject } from "./projectManager.js";
+import { addProjectToArray, getAllProjects, updateProject, removeAllProjects } from "./projectManager.js";
 import CreateToDo from "./createTodo.js";
 import { formatDate, saveData } from "./utilities.js";
+import { onPageLoad } from "./utilities.js";
+
+const receivedProjects = onPageLoad(); // this only has local storage projects with only projects & todos with stripped methods
+removeAllProjects();
+
+// give back the objects the method
+if (receivedProjects !== null) {
+    for (const storedProject of receivedProjects) {
+        const freshProject = addProjectToArray(storedProject.projectName, storedProject.projectDefault);
+        for (const toDo of storedProject.toDos) {
+            let newTodo = new CreateToDo(toDo.title, toDo.description, toDo.dueDate, toDo.priority, toDo.notes, toDo.checklist);
+            newTodo.id = toDo.id;
+            newTodo.complete = toDo.complete;
+            updateProject("addTodo", freshProject, null, newTodo);
+        };
+    };
+} else {
+    addProjectToArray("Initial", true);
+};
+
+createProjects(getAllProjects());
 let currentProject = null;
 let toDoID = null;
 const addButton = document.querySelector(".add-toDos-button");
@@ -34,7 +55,7 @@ const defaultProjectInput = document.getElementById("default-project");
 
 
 function addTodosToDOM(project) {
-    currentProject = project;
+    currentProject = getAllProjects().find(passedProject => passedProject.projectName === project.projectName) || project;
     addButton.disabled = false;
     const toDoGrid = document.querySelector(".toDo-grid");
     toDoGrid.textContent = "";
@@ -68,7 +89,7 @@ function addTodosToDOM(project) {
             changedDueInput.value = toDo.dueDate;
             changedPriorityInput.value = toDo.priority;
             changedNotesInput.value = toDo.notes;
-            changedCompleteInput.value = toDo.complete;
+            changedCompleteInput.checked = toDo.complete;
             changedChecklistItemsContainer.textContent = "";
             toDo.checklist.forEach(item => {
                 const input = document.createElement("input");
@@ -84,10 +105,11 @@ function addTodosToDOM(project) {
         deleteButton.classList.add("delete-button");
         buttonContainer.append(deleteButton);
         deleteButton.addEventListener("click", () => {
-            const index = projectTodos.indexOf(toDo);
+            const index = currentProject.toDos.indexOf(toDo);
             if (index !== -1) {
                 projectTodos.splice(index, 1);
                 toDoDiv.remove();
+                saveData();
             };
         });
         toDoDiv.append(buttonContainer);
@@ -175,13 +197,12 @@ changedSubmitButton.addEventListener("click", event => {
 
         for (const Todo of currentProject.toDos) {
             if (Todo.id === toDoID) {
-                if (newCompleteInput) { Todo.completeTask() }
+                if (newCompleteInput) { Todo.completeTask() };
                 Todo.title = newTitle;
                 Todo.description = newDescription;
                 Todo.dueDate = newDueDate;
                 Todo.priority = newPriority;
                 Todo.notes = newNotes;
-                Todo.checklist = checklist;
                 Todo.checklist = checklist;
             };
         };

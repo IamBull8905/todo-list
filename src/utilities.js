@@ -8,7 +8,8 @@ function formatDate(date) {
 };
 
 function saveData() {
-    localStorage.setItem("Projects",JSON.stringify(getAllProjects()));
+    const copy = getAllProjects();
+    localStorage.setItem("Projects",JSON.stringify(copy));
 };
 
 function onPageLoad() {
