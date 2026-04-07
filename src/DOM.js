@@ -28,6 +28,8 @@ const addButton = document.querySelector(".add-toDos-button");
 const toDoDialog = document.querySelector(".create-toDo");
 const updateToDoDialog = document.querySelector(".update-toDo");
 const projectDialog = document.querySelector(".create-project");
+const deleteDataDialog = document.querySelector(".clear-storage-warning");
+const messageDialog = document.querySelector(".page-load-message");
 const titleInput = document.getElementById("title");
 const descriptionInput = document.getElementById("description");
 const dueInput = document.getElementById("dueDate");
@@ -52,11 +54,39 @@ const updateForm = updateToDoDialog.querySelector("form");
 
 const projectTitle = document.getElementById("project-title");
 const defaultProjectInput = document.getElementById("default-project");
+const clearStorage = document.querySelector(".clear-storage");
+const deleteStorageItems = document.getElementById("delete-all");
+const cancelDeletion = document.getElementById("cancel-deletion");
+const closeMessage = document.querySelector(".close-message");
+
+window.onload = () => {
+  messageDialog.showModal();
+}
+
+closeMessage.addEventListener("click", () => {
+    messageDialog.close();
+})
+
+clearStorage.addEventListener("click", () => {
+    deleteDataDialog.showModal();
+});
+
+cancelDeletion.addEventListener("click", () => {
+    deleteDataDialog.close();
+})
+
+deleteStorageItems.addEventListener("click", (e) => {
+    e.preventDefault();
+    localStorage.clear();
+    window.location.reload();
+}
+)
 
 
 function addTodosToDOM(project) {
     currentProject = getAllProjects().find(passedProject => passedProject.projectName === project.projectName) || project;
     addButton.disabled = false;
+    addButton.classList.remove("disabled-button");
     const toDoGrid = document.querySelector(".toDo-grid");
     toDoGrid.textContent = "";
     let projectTodos = project.toDos;
@@ -126,6 +156,7 @@ closeProjectForm.addEventListener("click", () => {
 });
 
 addButton.disabled = true;
+addButton.classList.add("disabled-button");
 addButton.addEventListener("click", () => {
     toDoDialog.showModal();
 });

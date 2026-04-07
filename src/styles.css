@@ -127,7 +127,9 @@ h1 {
 }
 
 .expand-Todo,
-.delete-button {
+.delete-button,
+#cancel-deletion,
+.close-message {
     align-self: flex-start;
     padding: 6px 12px;
     border: 1px solid rgba(242, 222, 204, 0.2);
@@ -150,7 +152,9 @@ h1 {
     transform: scale(1.05);
 }
 
-.expand-Todo:hover {
+.expand-Todo:hover,
+#cancel-deletion:hover,
+.close-message:hover {
     background-color: #765F77;
     box-shadow: 0 0 10px rgba(118, 95, 119, 0.4);
     transform: scale(1.05);
@@ -179,6 +183,32 @@ h1 {
     box-shadow: 0 0 15px rgba(118, 95, 119, 0.6);
     border-color: #F2DECC;
     transform: scale(1.2);
+}
+
+.disabled-button {
+    pointer-events: auto;
+    cursor: not-allowed;
+    opacity: 0.5;
+    filter: saturate(0) brightness(0.7);
+}
+
+.clear-storage {
+    margin-top: auto;
+    background-color: #372A36;
+    color: #DAC6C0;
+    padding: 10px;
+    border: 1px solid rgba(242, 222, 204, 0.2);
+    border-radius: 6px;
+    font-family: "Space Mono", sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.clear-storage:hover {
+    background-color: #66443F;
+    color: #F2DECC;
+    box-shadow: 0 0 10px rgba(102, 68, 63, 0.4);
+    transform: scale(1.02);
 }
 
 #add-checklist-button,
@@ -247,7 +277,8 @@ select:valid {
 
 .create-toDo,
 .update-toDo,
-.create-project {
+.create-project,
+.page-load-message {
     padding: 20px;
     border: none;
     border-radius: 10px;
@@ -257,6 +288,20 @@ select:valid {
     backdrop-filter: blur(10px);
     top: 5%;
     left: 13%;
+}
+
+.page-load-message {
+    width: 500px;
+    max-width: 80vw;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.page-load-message .special-message {
+    color: #F2DECC;
+    font-family: "Space Mono", sans-serif;
+    line-height: 1.6;
 }
 
 label[for="complete"],
@@ -326,4 +371,16 @@ select {
 #changed-checklist-items > input {
     position: relative;
     left: 3%;
+}
+
+.warning-title {
+    text-align: center;
+    color: #F2DECC;
+    font-family: "Space Mono", sans-serif;
+    border: 1px solid #4C5266;
+}
+
+.warning-message > p {
+    color: #F2DECC;
+    font-family: "Orbitron", sans-serif;
 }

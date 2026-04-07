@@ -22,6 +22,7 @@
             <h1>Projects</h1>
             <button class = "add-projects-button">+</button>
             <div class = "projects-grid"></div>
+            <button class = "clear-storage">Clear Local Storage (all data will be permanently lost)</button>
         </div>
     </div>
     <dialog class = "create-toDo">
@@ -54,32 +55,32 @@
     </dialog>
 
     <dialog class = "update-toDo">
-    <form action = "#" method = "post">
-        <label for = "changed-title">Todo Title:</label>
-        <input type = "text" id = "changed-title" name = "title" placeholder = "Go to the supermarket" required>
-        <label for = "changed-description">Todo Description:</label>
-        <textarea rows = "15" cols = "25" id = "changed-description" required></textarea>
-        <label for = "changed-dueDate">Due Date:</label>
-        <input type = "date" id = "changed-dueDate" name = "date" required>
-        <label for = "changed-priority" name = "priority">Todo Priority:</label>
-        <select id = "changed-priority" name = "priority" required>
-            <option value="" disabled selected>Select priority</option>
-            <option value = "high">High</option>
-            <option value = "medium">Medium</option>
-            <option value = "low">Low</option>
-        </select>
-        <label for = "changed-notes">Todo Notes:</label>
-        <input type = "text" id = "changed-notes" name = "notes" placeholder="..." required>
-        <div class = "checklist-utilities">
-            <label for = "changed-add-checklist-button">Add checklist item:</label>
-            <button type = "button" id = "changed-add-checklist-button">+</button>
-        </div>
-        <div id = "changed-checklist-items"></div>
-        <label for = "changed-complete">Complete? (cannot be undone)</label>
-        <input type = "checkbox" id = "changed-complete" name = "complete">
-        <button type = "submit" id = "changed-submit-button">Submit all data and close form</button>
-    </form>
-</dialog>
+        <form action = "#" method = "post">
+            <label for = "changed-title">Todo Title:</label>
+            <input type = "text" id = "changed-title" name = "title" placeholder = "Go to the supermarket" required>
+            <label for = "changed-description">Todo Description:</label>
+            <textarea rows = "15" cols = "25" id = "changed-description" required></textarea>
+            <label for = "changed-dueDate">Due Date:</label>
+            <input type = "date" id = "changed-dueDate" name = "date" required>
+            <label for = "changed-priority" name = "priority">Todo Priority:</label>
+            <select id = "changed-priority" name = "priority" required>
+                <option value="" disabled selected>Select priority</option>
+                <option value = "high">High</option>
+                <option value = "medium">Medium</option>
+                <option value = "low">Low</option>
+            </select>
+            <label for = "changed-notes">Todo Notes:</label>
+            <input type = "text" id = "changed-notes" name = "notes" placeholder="..." required>
+            <div class = "checklist-utilities">
+                <label for = "changed-add-checklist-button">Add checklist item:</label>
+                <button type = "button" id = "changed-add-checklist-button">+</button>
+            </div>
+            <div id = "changed-checklist-items"></div>
+            <label for = "changed-complete">Complete? (cannot be undone)</label>
+            <input type = "checkbox" id = "changed-complete" name = "complete">
+            <button type = "submit" id = "changed-submit-button">Submit all data and close form</button>
+        </form>
+    </dialog>
 
     <dialog class = "create-project">
         <form action = "#" method = "post">
@@ -90,6 +91,27 @@
             <button type = "submit" id = "submit-project-button">Submit all data and close form</button>
         </form>
         <button id = "close-project-form">Close Form (without adding a new project)</button>
+    </dialog>
+
+    <dialog class = "clear-storage-warning create-toDo">
+        <form action = "#" method = "post">
+            <h2 class="warning-title">SYSTEM CRITICAL</h2>
+            <div class="warning-message">
+                <p>This action will permanently delete all saved projects & toDos.</p>
+                <p class="delete-data-warning">Are you sure you want to proceed?</p>
+        </div>
+
+        <div class="warning-buttons">
+            <button type="button" id = "cancel-deletion">Abort</button>
+            <button type="submit" id="delete-all" class="delete-button">Delete data permanently</button>
+        </div>
+        </form>
+    </dialog>
+
+    <dialog class = "page-load-message">
+        <h2 class = "warning-title">SYSTEM CRITICAL</h2>
+        <p class = "special-message">Hii, if you're reading this, that means this birthday gift actually got finished! It took so long with ~ 800 lines of code but I know how much you love space so I based it around that. I had to build a todo list as part of a project and thought this would be the perfect gift for you as you're always so busy!! A HUGE thanks to Adi for helping me with the colour palette <3</p>
+        <button class = "close-message">Close Message</button>
     </dialog>
 </body>
 </html>
