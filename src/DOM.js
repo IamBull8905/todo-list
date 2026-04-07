@@ -65,6 +65,7 @@ window.onload = () => {
 
 closeMessage.addEventListener("click", () => {
     messageDialog.close();
+    messageDialog.remove();
 })
 
 clearStorage.addEventListener("click", () => {
